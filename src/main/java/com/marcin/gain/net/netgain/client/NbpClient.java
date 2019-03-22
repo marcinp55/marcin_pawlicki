@@ -10,19 +10,20 @@ import java.net.URI;
 
 @Component
 public class NbpClient {
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-    private final String nbpRatesApiEndpointRoot = "http://api.nbp.pl/api/exchangerates/";
+    @SuppressWarnings("FieldCanBeLocal") // Not local for additional requests in future
+    private final String NBP_RATES_API_ENDPOINT_ROOT = "http://api.nbp.pl/api/exchangerates/";
 
     @Autowired
     public NbpClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    public NbpRatesDto getRateByDate(String tableType, String currencyCode, String date) {
+    public NbpRatesDto getRateByDate(String currencyCode, String date) {
         URI requestUrl = UriComponentsBuilder
-                .fromHttpUrl(nbpRatesApiEndpointRoot +
-                                String.join("/", "rates", tableType, currencyCode, date))
+                .fromHttpUrl(NBP_RATES_API_ENDPOINT_ROOT +
+                                String.join("/", "rates/a", currencyCode, date))
                 .build()
                 .encode()
                 .toUri();
