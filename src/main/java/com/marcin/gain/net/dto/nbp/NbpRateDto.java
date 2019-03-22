@@ -1,4 +1,4 @@
-package com.marcin.gain.net.netgain.dto.nbp;
+package com.marcin.gain.net.dto.nbp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

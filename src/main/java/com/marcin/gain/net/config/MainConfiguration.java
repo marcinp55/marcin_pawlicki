@@ -1,4 +1,4 @@
-package com.marcin.gain.net.netgain.config;
+package com.marcin.gain.net.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

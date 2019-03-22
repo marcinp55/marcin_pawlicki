@@ -1,4 +1,4 @@
-package com.marcin.gain.net.netgain;
+package com.marcin.gain.net;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

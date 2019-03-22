@@ -1,4 +1,4 @@
-package com.marcin.gain.net.netgain.service;
+package com.marcin.gain.net.service;
 
 import org.springframework.stereotype.Service;
 

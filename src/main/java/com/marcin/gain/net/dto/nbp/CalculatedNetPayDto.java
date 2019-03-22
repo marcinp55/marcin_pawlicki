@@ -1,4 +1,4 @@
-package com.marcin.gain.net.netgain.dto.nbp;
+package com.marcin.gain.net.dto.nbp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

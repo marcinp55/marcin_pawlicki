@@ -1,6 +1,6 @@
-package com.marcin.gain.net.netgain.client;
+package com.marcin.gain.net.client;
 
-import com.marcin.gain.net.netgain.dto.nbp.NbpRatesDto;
+import com.marcin.gain.net.dto.nbp.NbpRatesDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
