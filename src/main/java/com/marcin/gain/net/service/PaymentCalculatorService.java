@@ -1,6 +1,5 @@
 package com.marcin.gain.net.service;
 
-import com.marcin.gain.net.client.NbpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

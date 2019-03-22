@@ -49,7 +49,7 @@ public class NbpController {
         String dateMinusOne = LocalDate.now().minusDays(1L).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         NbpRatesDto nbpRates = nbpClient.getRateByDate(currencyCode, dateMinusOne);
 
-        if (nbpRates.getRates().isEmpty()) {
+        if (nbpRates == null) {
             LOGGER.error("NBP Client returned no data.");
             throw new ClientException("Client returned no data.");
         }

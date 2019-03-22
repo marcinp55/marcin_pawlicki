@@ -17,9 +17,9 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(ClientException.class)
     public final ResponseEntity handleClientExceptions(ClientException exception) {
         return new ResponseEntity<>(new ExceptionDetails(new Date(),
-                HttpStatus.BAD_REQUEST.value(),
-                exception.getMessage()),
-                HttpStatus.BAD_REQUEST);
+                                                        HttpStatus.BAD_REQUEST.value(),
+                                                        exception.getMessage()),
+                                                        HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(InvalidDataException.class)
