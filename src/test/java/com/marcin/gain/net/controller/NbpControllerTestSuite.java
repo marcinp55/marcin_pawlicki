@@ -59,7 +59,8 @@ public class NbpControllerTestSuite {
                         .param("currCode", "EUR"))
                             .andDo(print())
                             .andExpect(status().isOk())
-                            .andExpect(jsonPath("$.netPay", is(9281.394)));
+                            .andExpect(jsonPath("$.netPay", is(9281.394)))
+                            .andExpect(jsonPath("$.grossPay", is(3300.0)));
         } catch (Exception e) {
             fail(e.getCause().toString());
             e.printStackTrace();

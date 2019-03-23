@@ -14,6 +14,23 @@ public class PaymentCalculatorServiceTestSuite {
     private PaymentCalculatorService paymentCalculatorService;
 
     @Test
+    public void shouldFetchGrossPay() {
+        // Given
+        double dailyPay = 100;
+
+        // When
+        double grossPay = paymentCalculatorService.calculateGross(dailyPay);
+
+        // Then
+        Assert.assertEquals(2200, grossPay, 0);
+    }
+
+    @Test
+    public void shouldFetchZeroGrossPay() {
+
+    }
+
+    @Test
     public void shouldFetchGrossToNetPay() {
         // Given
         double fixedCost = 500;

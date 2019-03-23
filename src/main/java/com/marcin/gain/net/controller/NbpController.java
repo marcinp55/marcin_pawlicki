@@ -43,7 +43,8 @@ public class NbpController {
         controllerValidator.validateNetPayRequest(fixedCost, tax, dailyPay);
 
         if (currencyCode.toUpperCase().equals("PLN")) {
-            return new CalculatedNetPayDto(paymentCalculatorService.grossToNet(fixedCost, tax, dailyPay));
+            return new CalculatedNetPayDto(paymentCalculatorService.calculateGross(dailyPay),
+                                            paymentCalculatorService.grossToNet(fixedCost, tax, dailyPay));
         }
 
         String dateMinusOne = LocalDate.now().minusDays(1L).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -54,6 +55,7 @@ public class NbpController {
             throw new ClientException("Client returned no data.");
         }
 
-        return new CalculatedNetPayDto(paymentCalculatorService.foreignGrossToNet(fixedCost, tax, dailyPay, nbpRates.getRates().get(0).getMidExchangeRate()));
+        return new CalculatedNetPayDto(paymentCalculatorService.calculateGross(dailyPay),
+                                        paymentCalculatorService.foreignGrossToNet(fixedCost, tax, dailyPay, nbpRates.getRates().get(0).getMidExchangeRate()));
     }
 }

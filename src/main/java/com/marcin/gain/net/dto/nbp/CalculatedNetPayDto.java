@@ -10,5 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CalculatedNetPayDto {
+    private double grossPay;
     private double netPay;
 }
