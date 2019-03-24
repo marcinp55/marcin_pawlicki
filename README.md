@@ -10,7 +10,7 @@ App fetches latest available exchange rate at the time of request.
 !!! Heroku application server switches to sleep mode after some inactivity time, so when the app is not working, wait a few
 seconds and refresh !!!
 
-This web app is hosted at [Heroku](https://sonalake-recruit.herokuapp.com/) though as for now it only has one endpoint 
+This web app is hosted at Heroku though as for now it only has one endpoint 
 ([ExampleRequestUrl](https://sonalake-recruit.herokuapp.com/nbp/net?fixedCost=500&tax=20&dailyPay=250&currCode=GBP)). 
 Live documentation is also available [here](https://sonalake-recruit.herokuapp.com/swagger-ui.html#/).
 
