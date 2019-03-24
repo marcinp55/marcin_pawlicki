@@ -5,32 +5,36 @@ import com.marcin.gain.net.controller.validator.ControllerValidator;
 import com.marcin.gain.net.dto.nbp.CalculatedNetPayDto;
 import com.marcin.gain.net.dto.nbp.NbpRatesDto;
 import com.marcin.gain.net.exception.ClientException;
+import com.marcin.gain.net.helper.DateHelper;
 import com.marcin.gain.net.service.PaymentCalculatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @RestController
 @RequestMapping("/nbp")
+@CrossOrigin("*")
 public class NbpController {
     private static final Logger LOGGER = LoggerFactory.getLogger(NbpController.class);
     private final NbpClient nbpClient;
     private final PaymentCalculatorService paymentCalculatorService;
     private final ControllerValidator controllerValidator;
+    private final DateHelper dateHelper;
 
     @Autowired
-    public NbpController(NbpClient nbpClient, PaymentCalculatorService paymentCalculatorService, ControllerValidator controllerValidator) {
+    public NbpController(NbpClient nbpClient,
+                         PaymentCalculatorService paymentCalculatorService,
+                         ControllerValidator controllerValidator,
+                         DateHelper dateHelper) {
         this.nbpClient = nbpClient;
         this.paymentCalculatorService = paymentCalculatorService;
         this.controllerValidator = controllerValidator;
+        this.dateHelper = dateHelper;
     }
 
     @RequestMapping(method = RequestMethod.GET,
@@ -47,8 +51,8 @@ public class NbpController {
                                             paymentCalculatorService.grossToNet(fixedCost, tax, dailyPay));
         }
 
-        String dateMinusOne = LocalDate.now().minusDays(1L).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        NbpRatesDto nbpRates = nbpClient.getRateByDate(currencyCode, dateMinusOne);
+        String validRateDate = dateHelper.getCorrectRateDate(LocalDate.now());
+        NbpRatesDto nbpRates = nbpClient.getRateByDate(currencyCode, validRateDate);
 
         if (nbpRates == null) {
             LOGGER.error("NBP Client returned no data.");
